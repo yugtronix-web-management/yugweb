@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YugTroniX Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            list-style: none;
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007bff;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .nav-links.active li {
+            margin: 10px 0;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/api/placeholder/1920/1080') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Marquee Styles */
+        .marquee {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Logo Section Styles */
+        .logo-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .logo-section img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #e0e0e0;
+            position: relative;
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        /* Projects Section Styles */
+        .projects {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+        }
+
+        .projects h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .project-slideshow {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-slide {
+            display: none;
+            text-align: center;
+        }
+
+        .project-slide.active {
+            display: block;
+        }
+
+        .project-slide img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .project-slide h3 {
+            margin-top: 20px;
+        }
+
+        .project-slide p {
+            margin-bottom: 20px;
+        }
+
+        .project-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #007bff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .project-nav:hover {
+            color: #0056b3;
+        }
+
+        .prev {
+            left: -40px;
+        }
+
+        .next {
+            right: -40px;
+        }
+
+        /* About Us Section Styles */
+        .about-us {
+            padding: 50px 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .about-us h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .about-us p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        /* Team Members Section Styles */
+        .team-members {
+            padding: 50px 0;
+            overflow: hidden;
+        }
+
+        .team-members h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .team-carousel-container {
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .team-carousel {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member {
+            flex: 0 0 250px;
+            margin-right: 30px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .carousel-nav button {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #007bff;
+            cursor: pointer;
+            margin: 0 15px;
+        }
+
+        /* Contact Us Section Styles */
+        .contact-us {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+        }
+
+        .contact-us h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .contact-item {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .map-container {
+            height: 300px;
+            margin-top: 30px;
+        }
+
+        /* Social Media Button Styles */
+        .social-media-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .social-media-toggle {
+            width: 50px;
+            height: 50px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-media-toggle:hover {
+            background-color: #0056b3;
+        }
+
+        .social-media-icons {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            display: none;
+        }
+
+        .social-media-icons.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-media-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-media-icons a:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        /* Scroll to Top Button Styles */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scroll-to-top.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #0056b3;
+        }
+
+        /* Event Gallery Section Styles */
+        .event-gallery {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+        }
+
+        .event-gallery h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .gallery-slideshow {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .gallery-slide {
+            display: none;
+        }
+
+        .gallery-slide.active {
+            display: block;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .social-media a {
+            color: #fff;
+            margin-left: 15px;
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .project-nav {
+                font-size: 1.5rem;
+            }
+
+            .prev {
+                left: -20px;
+            }
+
+            .next {
+                right: -20px;
+            }
+
+            .team-member {
+                flex: 0 0 200px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            .social-media {
+                margin-top: 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="/api/placeholder/150/50?text=YugTroniX" alt="YugTroniX Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Innovating the Future</h1>
+                <p>Join YugTroniX and be part of the technological revolution</p>
+                <a href="#" class="cta-button">Join Us</a>
+            </div>
+        </section>
+
+        <div class="marquee">
+            <div class="marquee-content">
+                Innovating the Future with Robotics | Join YugTroniX and build your dreams! | Collaborate, Innovate, and Achieve! | Let's shape the world of tomorrow with technology!
+            </div>
+        </div>
+
+        <section class="logo-section">
+            <img src="/api/placeholder/200/200?text=YugTroniX" alt="YugTroniX Logo">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Our Projects</h2>
+                <div class="project-slideshow">
+                    <div class="project-slide active">
+                        <img src="/api/placeholder/800/400?text=Project+1" alt="Project 1">
+                        <h3>Quadcopter Drone with LIDAR-based Mapping</h3>
+                        <p>An advanced quadcopter drone, controlled by joystick and hand gestures with vibration reduction for improved stability, a custom flight controller, and LIDAR integration for enhanced mapping. The drone operates indoors without GPS reliance.</p>
+                        <a href="#" class="cta-button">Read More</a>
+                    </div>
+                    <div class="project-slide">
+                        <img src="/api/placeholder/800/400?text=Project+2" alt="Project 2">
+                        <h3>FPV RC Car with Autonomous Driving</h3>
+                        <p>A self-driving first-person view (FPV) RC car that navigates autonomously while providing real-time video feedback. This platform integrates computer vision, machine learning, and robotics to explore autonomous vehicle concepts.</p>
+                        <a href="#" class="cta-button">Read More</a>
+                    </div>
+                    <div class="project-slide">
+                        <img src="/api/placeholder/800/400?text=Project+3" alt="Project 3">
+                        <h3>Robotic Arm</h3>
+                        <p>A functional robotic arm capable of performing tasks such as picking and placing objects with precision and control.</p>
+                        <a href="#" class="cta-button">Read More</a>
+                    </div>
+                    <div class="project-nav prev">&#10094;</div>
+                    <div class="project-nav next">&#10095;</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-us">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>YugTroniX is a cutting-edge technology club dedicated to innovating with purpose. Our vision is to lead the future of robotics and technology in education, fostering a community of passionate tech enthusiasts.</p>
+                <a href="#" class="cta-button">Read More</a>
+            </div>
+        </section>
+
+        <section id="team" class="team-members">
+            <div class="container">
+                <h2>Our Team</h2>
+                <div class="team-carousel-container">
+                    <div class="team-carousel">
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+1" alt="Team Member 1">
+                            <h3>S.V.N.S Surya, IV</h3>
+                            <p>President</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+2" alt="Team Member 2">
+                            <h3>V.LEELA Krishna, II</h3>
+                            <p>Vice President</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+3" alt="Team Member 3">
+                            <h3>K. Gayatri, IV</h3>
+                            <p>Secretary</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+4" alt="Team Member 4">
+                            <h3>D. Jahnavi, IV</h3>
+                            <p>Student Coordinator</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+5" alt="Team Member 5">
+                            <h3>Guru Charan, II</h3>
+                            <p>Student Coordinator</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+6" alt="Team Member 6">
+                            <h3>Latha Sri, I</h3>
+                            <p>Student Coordinator</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+7" alt="Team Member 7">
+                            <h3>Uday Kiran, I</h3>
+                            <p>Student Coordinator</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-us">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>YugTroniX Club, Department of Mechanical Engineering<br>UCEK, JNTU Kakinada, 533003</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>yugtronix.me@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+91 9959591436</p>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.4397274483117!2d82.24059866386136!3d16.97956724316883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a382841a29aaaab%3A0xd7b17072d88d1f32!2sDepartment%20Of%20Mechanical%20Engineering!5e0!3m2!1sen!2sin!4v1725708576892!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="event-gallery">
+            <div class="container">
+                <h2>Event Gallery</h2>
+                <div class="gallery-slideshow">
+                    <div class="gallery-slide active">
+                        <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/Yugmem.jpg" alt="Event 1">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/INA2.jpg" alt="Event 2">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/INA1.jpg" alt="Event 3">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#about">About Us</a>
+                    <a href="#team">Team</a>
+                    <a href="#gallery">Gallery</a>
+                </div>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 YugTroniX Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="social-media-button">
+        <div class="social-media-toggle">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="social-media-icons">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Project Slideshow
+        const projectSlides = document.querySelectorAll('.project-slide');
+        const prevProject = document.querySelector('.projects .project-nav.prev');
+        const nextProject = document.querySelector('.projects .project-nav.next');
+        let currentProjectSlide = 0;
+
+        function showProjectSlide(n) {
+            projectSlides[currentProjectSlide].classList.remove('active');
+            currentProjectSlide = (n + projectSlides.length) % projectSlides.length;
+            projectSlides[currentProjectSlide].classList.add('active');
+        }
+
+        prevProject.addEventListener('click', () => showProjectSlide(currentProjectSlide - 1));
+        nextProject.addEventListener('click', () => showProjectSlide(currentProjectSlide + 1));
+
+        // Team Carousel
+        const teamCarousel = document.querySelector('.team-carousel');
+        const teamMembers = document.querySelectorAll('.team-member');
+        const prevTeam = document.querySelector('.team-members .carousel-nav .prev');
+        const nextTeam = document.querySelector('.team-members .carousel-nav .next');
+        let currentTeamIndex = 0;
+        const visibleTeamMembers = window.innerWidth < 768 ? 1 : 3;
+
+        function showTeamSlide(n) {
+            const maxIndex = teamMembers.length - visibleTeamMembers;
+            currentTeamIndex = Math.max(0, Math.min(n, maxIndex));
+            const offset = -currentTeamIndex * (teamMembers[0].offsetWidth + 30);
+            teamCarousel.style.transform = `translateX(${offset}px)`;
+        }
+
+        prevTeam.addEventListener('click', () => showTeamSlide(currentTeamIndex - 1));
+        nextTeam.addEventListener('click', () => showTeamSlide(currentTeamIndex + 1));
+
+        // Event Gallery Slideshow
+        const gallerySlides = document.querySelectorAll('.gallery-slide');
+        let currentGallerySlide = 0;
+
+        function showGallerySlide(n) {
+            gallerySlides[currentGallerySlide].classList.remove('active');
+            currentGallerySlide = (n + gallerySlides.length) % gallerySlides.length;
+            gallerySlides[currentGallerySlide].classList.add('active');
+        }
+
+        setInterval(() => showGallerySlide(currentGallerySlide + 1), 3000);
+
+        // Social Media Button
+        const socialMediaToggle = document.querySelector('.social-media-toggle');
+        const socialMediaIcons = document.querySelector('.social-media-icons');
+
+        socialMediaToggle.addEventListener('click', () => {
+            socialMediaIcons.classList.toggle('active');
+        });
+
+        // Scroll to Top Button
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopButton.classList.add('active');
+            } else {
+                scrollToTopButton.classList.remove('active');
+            }
+        });
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Progress Bar
+        const progressBar = document.querySelector('.progress');
+
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Handle window resize for team carousel
+        window.addEventListener('resize', () => {
+            const newVisibleMembers = window.innerWidth < 768 ? 1 : 3;
+            if (newVisibleMembers !== visibleTeamMembers) {
+                showTeamSlide(currentTeamIndex);
+            }
+        });
+    </script>
+</body>
+</html>
