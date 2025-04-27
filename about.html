@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - YugTroniX Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --white: #fff;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles - Optimized */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo img {
+            height: 40px;
+            transition: var(--transition);
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            list-style: none;
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-links.active li {
+            margin: 10px 0;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .hamburger:hover {
+            color: var(--primary-color);
+        }
+
+        /* Page Banner - Enhanced */
+        .page-banner {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1920/500?text=About+YugTroniX') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.2) 100%);
+            z-index: 1;
+        }
+
+        .page-banner h1 {
+            font-size: 3rem;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* About Sections - Improved */
+        .about-section {
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto;
+            transition: var(--transition);
+        }
+
+        .section-title:hover::after {
+            width: 120px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        .about-text p strong {
+            color: var(--primary-color);
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .about-image img:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .mission-vision {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .mission, .vision {
+            flex: 0 0 48%;
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission::before, .vision::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .mission:hover::before, .vision:hover::before {
+            height: 100%;
+        }
+
+        .mission:hover, .vision:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .mission h3, .vision h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .mission h3 i, .vision h3 i {
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+
+        .mission:hover h3 i, .vision:hover h3 i {
+            transform: rotate(360deg);
+        }
+
+        /* Core Values - Enhanced */
+        .core-values {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .value-item {
+            flex: 0 0 30%;
+            text-align: center;
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .value-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: rgba(0,123,255,0.05);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .value-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-item:hover::after {
+            height: 100%;
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .value-item:hover .value-icon {
+            transform: scale(1.2);
+        }
+
+        .value-item h3 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        /* Projects - Improved */
+        .projects-highlight {
+            margin-top: 40px;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            flex: 0 0 40%;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-item:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-details {
+            flex: 0 0 60%;
+            padding: 20px;
+        }
+
+        .project-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Team Section - Enhanced */
+        .team-highlight {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .team-members-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-member-card {
+            flex: 0 0 calc(33.333% - 30px);
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .team-member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .member-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .team-member-card:hover .member-image::after {
+            opacity: 1;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member-card:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 20px;
+            position: relative;
+        }
+
+        .member-info::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .team-member-card:hover .member-info::before {
+            width: 50px;
+        }
+
+        .member-info h3.animate {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .member-info h3 {
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .member-info p {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Testimonials - Enhanced */
+        .testimonials {
+            margin-top: 40px;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-item {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin: 10px;
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: var(--transition);
+        }
+
+        .testimonial-item.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+            animation: fadeSlideIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .testimonial-content::before,
+        .testimonial-content::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: absolute;
+        }
+
+        .testimonial-content::before {
+            left: 0;
+            top: -10px;
+        }
+
+        .testimonial-content::after {
+            right: 0;
+            bottom: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .testimonial-item:hover .testimonial-author img {
+            transform: scale(1.1);
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--primary-color);
+        }
+
+        .testimonial-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+
+        .testimonial-nav:hover {
+            color: var(--primary-dark);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .testimonial-prev {
+            left: -20px;
+        }
+
+        .testimonial-next {
+            right: -20px;
+        }
+
+        /* Statistics - Improved */
+        .stats-section {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1920/500?text=YugTroniX+Stats') no-repeat center center/cover;
+            padding: 80px 0;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            flex: 0 0 200px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .stat-number::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+        }
+
+        /* Call to Action - Enhanced */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: radial-gradient(circle at center, rgba(0,123,255,0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Footer Styles - Improved */
+        footer {
+            background-color: #333;
+            color: var(--white);
+            padding: 30px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-right: 20px;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-media a {
+            color: var(--white);
+            margin-left: 15px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-media a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Social Media Button Styles - Enhanced */
+        .social-media-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .social-media-toggle {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .social-media-toggle:hover {
+            background-color: var(--primary-dark);
+            transform: rotate(90deg);
+        }
+
+        .social-media-icons {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            display: none;
+        }
+
+        .social-media-icons.active {
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-media-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .social-media-icons a:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* Scroll to Top Button Styles - Enhanced */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+
+        .scroll-to-top.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles - Optimized */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .mission, .vision {
+                flex: 0 0 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .page-banner h1 {
+                font-size: 2rem;
+            }
+
+            .value-item {
+                flex: 0 0 100%;
+            }
+
+            .project-item {
+                flex-direction: column;
+            }
+
+            .project-image {
+                flex: 0 0 100%;
+            }
+
+            .project-details {
+                flex: 0 0 100%;
+            }
+
+            .team-member-card {
+                flex: 0 0 100%;
+            }
+
+            .testimonial-nav {
+                font-size: 1.5rem;
+            }
+
+            .testimonial-prev {
+                left: -10px;
+            }
+
+            .testimonial-next {
+                right: -10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            .social-media {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="/api/placeholder/150/50?text=YugTroniX" alt="YugTroniX Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-banner">
+            <h1>About YugTroniX</h1>
+        </section>
+
+        <section id="who-we-are" class="about-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Who We Are</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p><strong>YugTroniX</strong> is the official Robotics Club of the <strong>Department of Mechanical Engineering</strong> at <strong>JNTUK UCEK</strong>. We are a team of passionate innovators, engineers, and thinkers working at the intersection of <strong>mechanical design, electronics, and programming</strong>.</p>
+                        <p>Our club provides a platform for students to explore, experiment, and build robotics projects — from concept to creation — while developing both <strong>technical expertise</strong> and <strong>leadership skills</strong>.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/INA1.jpg" alt="YugTroniX Team">
+                    </div>
+                </div>
+
+                <div class="mission-vision">
+                    <div class="mission">
+                        <h3><i class="fas fa-rocket"></i> Our Mission</h3>
+                        <p>Our mission is to help students learn robotics through real, hands-on projects. We believe in collaboration, interdisciplinary learning, and solving real-world problems through creativity and teamwork.</p>
+                        <p>At YugTroniX, it's not just about technical knowledge — we also help students become <strong>independent and confident innovators</strong>. We encourage you to bring your ideas to life and take action, rather than waiting for direction. We support initiative, self-driven work, and thinking beyond the ordinary.</p>
+                    </div>
+                    <div class="vision">
+                        <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                        <p>We aim to become a <strong>well-known, student-led robotics club</strong> that creates impactful and smart engineering solutions. Our goal is to make a difference in both academics and the real world.</p>
+                        <p>We believe that every student has the potential to lead. At YugTroniX, we create an environment where you are free to <strong>explore new ideas</strong>, <strong>take initiative</strong>, and <strong>grow your skills</strong>. This is a place where <strong>creativity</strong>, <strong>fresh thinking</strong>, and <strong>innovation</strong> are always encouraged.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+        <section id="core-values" class="about-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Core Values</h2>
+                </div>
+                <div class="core-values">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>We foster a culture of innovation, encouraging new ideas and approaches to solve complex problems.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Teamwork</h3>
+                        <p>We believe in the power of collaboration and working together to achieve common goals.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Learning by Doing</h3>
+                        <p>We promote practical, hands-on learning experiences that go beyond theoretical knowledge.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Precision</h3>
+                        <p>We strive for excellence and precision in all our technical projects and endeavors.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Creativity</h3>
+                        <p>We encourage creative thinking and innovative approaches to problem-solving.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <h3>Leadership</h3>
+                        <p>We develop leadership skills and initiative among our members to drive positive change.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="what-we-do" class="about-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What We Do</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>At YugTroniX, our activities revolve around innovation and practical learning in the field of robotics and technology:</p>
+                        <ul style="margin-left: 20px; margin-bottom: 20px;">
+                            <li>Design and build <strong>autonomous robots and drones</strong></li>
+                            <li>Work on <strong>embedded systems</strong> using Arduino, Raspberry Pi, and ROS</li>
+                            <li>Organize <strong>workshops</strong>, <strong>hackathons</strong>, and <strong>technical fests</strong></li>
+                            <li>Promote <strong>cross-disciplinary innovation</strong> and practical learning</li>
+                            <li>Participate in national and regional robotics competitions</li>
+                            <li>Provide mentorship and guidance to new members</li>
+                        </ul>
+                        <p>Our hands-on approach ensures that members gain practical experience while working on cutting-edge technology projects.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/INA1.jpg" alt="YugTroniX Workshop">
+                    </div>
+                </div>
+
+                <div class="projects-highlight">
+                    <h3 style="text-align: center; margin-bottom: 30px;">Flagship Projects</h3>
+                    <div class="project-item">
+                        <div class="project-image">
+                            <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/INA1.jpg" alt="QuadDrone Project">
+                        </div>
+                        <div class="project-details">
+                            <h3>QuadDrone</h3>
+                            <p>An advanced quadcopter drone, controlled by joystick and hand gestures with vibration reduction for improved stability. Features a custom flight controller and LIDAR integration for enhanced mapping. The drone operates indoors without GPS reliance.</p>
+                            <p><strong>Future Scope:</strong> Adding airbags and a gripper, vision-based navigation system.</p>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-image">
+                            <img src="/api/placeholder/400/300?text=Autonomous+FPV+Car" alt="Autonomous FPV Car">
+                        </div>
+                        <div class="project-details">
+                            <h3>Autonomous FPV Car</h3>
+                            <p>A self-driving first-person view (FPV) RC car that navigates autonomously while providing real-time video feedback. This platform integrates computer vision, machine learning, and robotics to explore autonomous vehicle concepts.</p>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-image">
+                            <img src="/api/placeholder/400/300?text=6+DOF+Robotic+Arm" alt="6 DOF Robotic Arm">
+                        </div>
+                        <div class="project-details">
+                            <h3>6 DOF Robotic Arm</h3>
+                            <p>A functional robotic arm with 6 degrees of freedom capable of performing tasks such as picking and placing objects with precision and control. This project gives members hands-on experience with kinematics, control systems, and mechanical design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team-leadership" class="about-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Leadership Team (2024-2025)</h2>
+                </div>
+                <div class="team-highlight">
+                    <p>The success of YugTroniX is driven by a dedicated team of student leaders who work tirelessly to create opportunities for innovation and learning.</p>
+                    
+                    <div class="team-members-grid">
+                        <div class="team-member-card">
+                            <div class="member-image">
+                                <img src="https://www.torquejntuk.in/images/t1.jpg" alt="President">
+                            </div>
+                            <div class="member-info">
+                                <h3>S.V.N.S. Surya</h3>
+                                <p>President</p>
+                            </div>
+                        </div>
+                        <div class="team-member-card">
+                            <div class="member-image">
+                                <img src="/api/placeholder/300/300?text=Vice+President" alt="Vice President">
+                            </div>
+                            <div class="member-info">
+                                <h3>Vemulapalli Leela Krishna</h3>
+                                <p>Vice President</p>
+                            </div>
+                        </div>
+                        <div class="team-member-card">
+                            <div class="member-image">
+                                <img src="/api/placeholder/300/300?text=Secretary" alt="Secretary">
+                            </div>
+                            <div class="member-info">
+                                <h3>K. Gayathri</h3>
+                                <p>Secretary</p>
+                            </div>
+                        </div>
+                        <div class="team-member-card">
+                            <div class="member-image">
+                                <img src="/api/placeholder/300/300?text=Coordinator" alt="Student Coordinator">
+                            </div>
+                            <div class="member-info">
+                                <h3>D. Jahnavi</h3>
+                                <p>Student Coordinator</p>
+                            </div>
+                        </div>
+                        <div class="team-member-card">
+                            <div class="member-image">
+                                <img src="/api/placeholder/300/300?text=Coordinator" alt="Student Coordinator">
+                            </div>
+                            <div class="member-info">
+                                <h3>A. Guru Charan</h3>
+                                <p>Student Coordinator</p>
+                            </div>
+                        </div>
+                        <div class="team-member-card">
+                            <div class="member-image">
+                                <img src="/api/placeholder/300/300?text=Web+Coordinator" alt="Web Coordinator">
+                            </div>
+                            <div class="member-info">
+                                <h3>Vemulapalli Leela Krishna</h3>
+                                <p>Web Coordinator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="collaborations" class="collabs-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Collaborations & Affiliations</h2>
+                </div>
+                <p style="text-align: center; margin-bottom: 30px;">We're proud to work alongside these esteemed organizations in our mission to advance robotics innovation and education.</p>
+                <div class="collabs-grid">
+                    <div class="collab-item">
+                        <img src="https://www.torquejntuk.in/images/t1.jpg" alt="Indian Institute of Production Engineers">
+                    </div>
+                    <div class="collab-item">
+                        <img src="/api/placeholder/180/60?text=IRC+JNTUK" alt="Innovation Research Centre, JNTUK">
+                    </div>
+                    <div class="collab-item">
+                        <img src="/api/placeholder/180/60?text=ME+JNTUK" alt="Department of Mechanical Engineering, JNTUK UCEK">
+                    </div>
+                    <div class="collab-item">
+                        <img src="/api/placeholder/180/60?text=Club+APEX" alt="Club APEX">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="leadership-message" class="about-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Leadership Messages</h2>
+                </div>
+                <div class="testimonials">
+                    <div class="testimonial-slider">
+                        <div class="testimonial-item active">
+                            <div class="testimonial-content">
+                                YugTroniX is more than just a club — it's a movement of young innovators. I'm proud of the passion and determination our team shows in building the solutions of tomorrow.
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/100/100?text=President" alt="S.V.N.S. Surya">
+                                <div class="author-info">
+                                    <h4>S.V.N.S. Surya</h4>
+                                    <p>President, YugTroniX Robotics Club</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                At YugTroniX, we believe in action over authority. We encourage students to lead with ideas, take ownership of their projects, and drive innovation forward. This is your space to dream big, build bold, and learn by doing.
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="https://www.torquejntuk.in/images/VEMULAPALLILEELAKRISHNA[1].png" alt="Vemulapalli Leela Krishna">
+                                <div class="author-info">
+                                    <h4>Vemulapalli Leela Krishna</h4>
+                                    <p>Vice President, YugTroniX Robotics Club</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-nav testimonial-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="testimonial-nav testimonial-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>YugTroniX By The Numbers</h2>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Active Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Completed Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Workshops Conducted</div>
+                    </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Join the Innovation Revolution?</h2>
+                <p>Become a part of YugTroniX and embark on an exciting journey of robotics innovation and engineering excellence.</p>
+                <a href="#" class="cta-button">Join YugTroniX Today</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <img src="/api/placeholder/150/50?text=YugTroniX" alt="YugTroniX Logo" style="filter: brightness(0) invert(1);">
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="#about">About Us</a>
+                    <a href="index.html#team">Team</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 YugTroniX - JNTUK UCEK. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="social-media-button">
+        <div class="social-media-toggle">
+            <i class="fas fa-share-alt"></i>
+        </div>
+        <div class="social-media-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        /**
+ * YugTroniX Club Website - Enhanced JavaScript
+ * This script adds interactive features and animations to the YugTroniX website
+ */
+
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Navigation and UI Elements ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const socialToggle = document.querySelector('.social-media-toggle');
+    const socialIcons = document.querySelector('.social-media-icons');
+    const scrollTopBtn = document.querySelector('.scroll-to-top');
+    
+    // --- Slider Elements ---
+    const testimonials = document.querySelectorAll('.testimonial-item');
+    const prevBtn = document.querySelector('.testimonial-prev');
+    const nextBtn = document.querySelector('.testimonial-next');
+    let currentTestimonial = 0;
+    let testimonialInterval;
+
+    // --- Animation Elements ---
+    const animatedElements = document.querySelectorAll(
+        '.value-item, .team-member-card, .project-item, .stat-item, .mission, .vision'
+    );
+    
+    // --- Navigation Functionality ---
+    
+    // Toggle Mobile Navigation
+    hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        // Add animation to hamburger icon
+        this.querySelector('i').classList.toggle('fa-bars');
+        this.querySelector('i').classList.toggle('fa-times');
+    });
+    
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!hamburger.contains(event.target) && !navLinks.contains(event.target) && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburger.querySelector('i').classList.add('fa-bars');
+            hamburger.querySelector('i').classList.remove('fa-times');
+        }
+    });
+    
+    // Add smooth scrolling to all navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Close mobile navigation if open
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                hamburger.querySelector('i').classList.add('fa-bars');
+                hamburger.querySelector('i').classList.remove('fa-times');
+            }
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return; // Skip empty links
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const headerOffset = 80; // Adjust based on your header height
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // --- Social Media Buttons Functionality ---
+    
+    // Toggle Social Media Icons
+    socialToggle.addEventListener('click', function() {
+        socialIcons.classList.toggle('active');
+        this.classList.toggle('active');
+        
+        // Animate the toggle icon
+        if (socialIcons.classList.contains('active')) {
+            this.querySelector('i').style.transform = 'rotate(90deg)';
+        } else {
+            this.querySelector('i').style.transform = 'rotate(0deg)';
+        }
+    });
+    
+    // Close social icons when clicking elsewhere
+    document.addEventListener('click', function(event) {
+        if (!socialToggle.contains(event.target) && !socialIcons.contains(event.target) && socialIcons.classList.contains('active')) {
+            socialIcons.classList.remove('active');
+            socialToggle.classList.remove('active');
+            socialToggle.querySelector('i').style.transform = 'rotate(0deg)';
+        }
+    });
+    
+    // --- Scroll to Top Button ---
+    
+    // Show/Hide button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('active');
+        } else {
+            scrollTopBtn.classList.remove('active');
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // --- Testimonial Slider Functionality ---
+    
+    // Initialize testimonial slider
+    function initTestimonialSlider() {
+        // Show first testimonial
+        if (testimonials.length > 0) {
+            testimonials[0].classList.add('active');
+        }
+        
+        // Set up automatic slide change
+        startTestimonialAutoplay();
+        
+        // Previous button
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                changeTestimonial('prev');
+                resetTestimonialAutoplay();
+            });
+        }
+        
+        // Next button
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                changeTestimonial('next');
+                resetTestimonialAutoplay();
+            });
+        }
+    }
+    
+    // Change testimonial slide
+    function changeTestimonial(direction) {
+        if (testimonials.length <= 1) return;
+        
+        testimonials[currentTestimonial].classList.remove('active');
+        
+        if (direction === 'next') {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        } else {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+        }
+        
+        testimonials[currentTestimonial].classList.add('active');
+    }
+    
+    // Start automatic testimonial rotation
+    function startTestimonialAutoplay() {
+        if (testimonials.length <= 1) return;
+        
+        // Change testimonial every 5 seconds
+        testimonialInterval = setInterval(() => {
+            changeTestimonial('next');
+        }, 5000);
+    }
+    
+    // Reset autoplay timer when manually navigating
+    function resetTestimonialAutoplay() {
+        clearInterval(testimonialInterval);
+        startTestimonialAutoplay();
+    }
+    
+    // --- Animation on Scroll ---
+    
+    // Check if element is in viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) / 1.25 &&
+            rect.bottom >= 0
+        );
+    }
+    
+    // Add animations to elements when they come into view
+    function animateOnScroll() {
+        animatedElements.forEach(element => {
+            if (isInViewport(element) && !element.classList.contains('animated')) {
+                element.classList.add('animated');
+                element.style.animation = 'fadeIn 0.8s ease-out forwards';
+            }
+        });
+        
+        // Animate statistics when in view
+        const statSection = document.querySelector('.stats-section');
+        if (statSection && isInViewport(statSection)) {
+            animateStatCounters();
+        }
+    }
+    
+    // Animate statistics with counting effect
+    let statCountersAnimated = false;
+    function animateStatCounters() {
+        if (statCountersAnimated) return;
+        
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(statElem => {
+            const targetValue = parseInt(statElem.textContent);
+            const plusSign = statElem.textContent.includes('+') ? '+' : '';
+            
+            // Start from 0
+            statElem.textContent = '0' + plusSign;
+            
+            // Count up to target value
+            let currentValue = 0;
+            const duration = 1500; // 1.5 seconds
+            const interval = 50; // Update every 50ms
+            const steps = duration / interval;
+            const increment = targetValue / steps;
+            
+            const counter = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(counter);
+                }
+                statElem.textContent = Math.floor(currentValue) + plusSign;
+            }, interval);
+        });
+        
+        statCountersAnimated = true;
+    }
+    
+    // --- Interactive hover effects ---
+    
+    // Add hover effects to team member cards
+    function addTeamMemberInteractivity() {
+        const teamMembers = document.querySelectorAll('.team-member-card');
+        
+        teamMembers.forEach(member => {
+            member.addEventListener('mouseenter', function() {
+                this.querySelector('.member-info h3').classList.add('animate');
+            });
+        });
+    }
+    
+    // --- Form validation (for the Join button) ---
+    
+    function setupFormValidation() {
+        const ctaButton = document.querySelector('.cta-button');
+        
+        if (ctaButton) {
+            ctaButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Show modal or form (would need to be added to HTML)
+                // For now, we'll just show an alert
+                alert('Thank you for your interest in joining YugTroniX! Please check back soon for our membership form.');
+                
+                // Add tracking analytics call if needed
+                // trackEvent('button_click', 'join_club');
+            });
+        }
+    }
+    
+    // --- Sticky header effect ---
+    
+    function initStickyHeader() {
+        const header = document.querySelector('header');
+        let lastScrollTop = 0;
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Add shadow and reduce size on scroll down
+            if (scrollTop > 50) {
+                header.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+                header.style.padding = '5px 0';
+            } else {
+                header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                header.style.padding = '0';
+            }
+            
+            // Hide header when scrolling down, show when scrolling up
+            // if (scrollTop > lastScrollTop && scrollTop > 300) {
+            //     header.style.transform = 'translateY(-100%)';
+            // } else {
+            //     header.style.transform = 'translateY(0)';
+            // }
+            
+            lastScrollTop = scrollTop;
+        });
+    }
+    
+    // --- Add parallax effect to banner ---
+    
+    function initParallaxEffect() {
+        const banner = document.querySelector('.page-banner');
+        
+        if (banner) {
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                const speed = 0.5; // Adjust for faster/slower effect
+                
+                // Move the background position
+                banner.style.backgroundPosition = `center ${50 + (scrollPosition * speed)}px`;
+            });
+        }
+    }
+    
+    // --- Preloader ---
+    
+    function addPreloader() {
+        // Create preloader element
+        const preloader = document.createElement('div');
+        preloader.className = 'preloader';
+        preloader.innerHTML = `
+            <div class="loader">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        `;
+        
+        // Add styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .preloader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                transition: opacity 0.5s ease, visibility 0.5s ease;
+            }
+            .loader {
+                display: flex;
+                align-items: center;
+            }
+            .circle {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: #007bff;
+                margin: 0 5px;
+                animation: bounce 0.5s alternate infinite;
+            }
+            .circle:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .circle:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+            @keyframes bounce {
+                from { transform: translateY(0); }
+                to { transform: translateY(-20px); }
+            }
+        `;
+        
+        document.head.appendChild(style);
+        document.body.prepend(preloader);
+        
+        // Hide preloader when page is loaded
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                
+                // Remove preloader after transition
+                setTimeout(() => {
+                    preloader.remove();
+                }, 500);
+            }, 800); // Show loader for at least 800ms
+        });
+    }
+    
+    // --- Initialize all functionality ---
+    
+    // Add preloader before anything else
+    addPreloader();
+    
+    // Initialize all components
+    initTestimonialSlider();
+    initStickyHeader();
+    initParallaxEffect();
+    addTeamMemberInteractivity();
+    setupFormValidation();
+    
+    // Run scroll animations immediately and then on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Run once on page load
+    
+    // --- Image Lazy Loading ---
+    
+    // Check for IntersectionObserver support
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    
+                    if (src) {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                    }
+                    
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        // Target all images that should be lazy loaded
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            img.src = img.getAttribute('data-src');
+            img.removeAttribute('data-src');
+        });
+    }
+    
+    // --- Detect whether JavaScript is enabled ---
+    document.body.classList.add('js-enabled');
+});
+    </script>
+</body>
+</html>
