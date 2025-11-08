@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robotic Arm for Pick and Place Operations - YugTroniX Club</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Project Details - YugTroniX Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <style>
         * {
@@ -14,9 +14,10 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            background: #0d1117;
+            color: #fff;
         }
 
         .container {
@@ -25,15 +26,15 @@
             padding: 0 20px;
         }
 
-        /* Header Styles */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(13, 17, 23, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 255, 255, 0.1);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
         nav {
@@ -58,206 +59,232 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: #00bfff;
             font-weight: 600;
-            transition: color 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: #007bff;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
-        .nav-links.active {
-            display: flex;
-            flex-direction: column;
+        .nav-links a::after {
+            content: '';
             position: absolute;
-            top: 80px;
+            bottom: -5px;
             left: 0;
-            right: 0;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 20px;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+            transition: width 0.3s ease;
         }
 
-        .nav-links.active li {
-            margin: 10px 0;
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .hamburger {
             display: none;
             cursor: pointer;
+            color: #00ffff;
+            font-size: 1.5rem;
         }
 
-        /* Project Header */
-        .project-header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1920/600?text=Robotic+Arm') no-repeat center center/cover;
-            height: 50vh;
+        .page-banner {
+            position: relative;
+            height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #fff;
-            position: relative;
             margin-top: 80px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a1f2e 100%);
         }
 
-        .project-header-content {
-            z-index: 1;
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, transparent 98%, rgba(0, 255, 255, 0.1) 98%),
+                linear-gradient(0deg, transparent 98%, rgba(0, 255, 255, 0.1) 98%);
+            background-size: 100px 100px;
+            animation: circuitFlow 20s linear infinite;
         }
 
-        .project-header h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+        @keyframes circuitFlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        .page-banner h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00ffff 0%, #00bfff 50%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            position: relative;
+            z-index: 2;
             animation: fadeIn 1s ease-out;
         }
 
-        .project-header p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 800px;
-            animation: fadeIn 1s ease-out 0.5s both;
+        .page-banner p {
+            color: #00bfff;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Project Content */
-        .project-content {
-            padding: 50px 0;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .project-section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .project-section:nth-child(even) {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 100%);
+        }
+
+        .project-section:nth-child(odd) {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+        }
+
+        .section-title {
+            text-align: center;
             margin-bottom: 50px;
         }
 
-        .project-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #007bff;
+        .section-title h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
         }
 
-        .project-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .project-section p {
-            margin-bottom: 20px;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+            margin: 15px auto;
         }
 
         .project-image {
             width: 100%;
-            border-radius: 10px;
-            margin: 20px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .features-list {
-            margin-left: 20px;
+        .project-image:hover {
+            transform: scale(1.02);
+            border-color: rgba(138, 43, 226, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+        }
+
+        .project-content p {
+            color: #00bfff;
+            line-height: 1.8;
+            font-size: 1.1rem;
             margin-bottom: 20px;
         }
 
+        .features-list ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
         .features-list li {
-            margin-bottom: 10px;
+            color: #00bfff;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #00ffff;
+            font-size: 1.5rem;
+        }
+
+        .features-list strong {
+            color: #00ffff;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .tech-item {
-            background-color: #f0f7ff;
-            color: #007bff;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        .team-members {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .team-member {
-            text-align: center;
-            width: 150px;
-        }
-
-        .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-
-        .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item img:hover {
-            transform: scale(1.05);
-        }
-
-        .cta-section {
-            background-color: #f9f9f9;
-            padding: 50px 0;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            margin-bottom: 20px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: #007bff;
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: #00ffff;
             font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        .cta-button:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
+        .tech-item:hover {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: rgba(138, 43, 226, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
         }
 
-        /* Timeline */
+        .col h3 {
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin: 30px 0 20px 0;
+        }
+
         .timeline {
             position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px 0;
+            max-width: 1000px;
+            margin: 50px auto;
         }
 
         .timeline::after {
             content: '';
             position: absolute;
-            width: 6px;
-            background-color: #007bff;
+            width: 4px;
+            background: linear-gradient(180deg, #00ffff, #8a2be2);
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -3px;
+            margin-left: -2px;
         }
 
         .timeline-item {
-            padding: 10px 40px;
+            padding: 20px 40px;
             position: relative;
             width: 50%;
         }
@@ -265,44 +292,108 @@
         .timeline-item::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            top: 15px;
+            width: 25px;
+            height: 25px;
+            background: #00ffff;
+            border: 4px solid #0d1117;
+            top: 30px;
             border-radius: 50%;
-            background-color: #fff;
-            border: 4px solid #007bff;
             z-index: 1;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
         }
 
-        .timeline-item.left {
+        .left {
             left: 0;
         }
 
-        .timeline-item.right {
+        .right {
             left: 50%;
         }
 
-        .timeline-item.right::after {
-            left: -10px;
+        .left::after {
+            right: -16px;
+        }
+
+        .right::after {
+            left: -16px;
         }
 
         .timeline-content {
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            background: rgba(13, 17, 23, 0.6);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(138, 43, 226, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
         }
 
         .timeline-content h3 {
-            margin-top: 0;
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 10px;
         }
 
-        /* Footer Styles */
+        .timeline-content p {
+            color: #00bfff;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 100%);
+        }
+
+        .cta-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: #00bfff;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0d1117;
+            background: linear-gradient(135deg, #00ffff 0%, #00bfff 100%);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+        }
+
         footer {
-            background-color: #333;
+            background: #0d1117;
             color: #fff;
-            padding: 30px 0;
+            padding: 50px 0;
+            border-top: 2px solid rgba(0, 255, 255, 0.2);
         }
 
         .footer-content {
@@ -310,50 +401,113 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: 20px;
         }
 
         .footer-links {
             display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
         }
 
         .footer-links a {
-            color: #fff;
+            color: #00bfff;
             text-decoration: none;
-            margin-right: 20px;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
         }
 
         .footer-links a:hover {
-            text-decoration: underline;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
         }
 
         .social-media a {
-            color: #fff;
-            margin-left: 15px;
-            font-size: 1.2rem;
+            color: #00ffff;
+            margin-left: 20px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #8a2be2;
+            transform: scale(1.2);
         }
 
         .copyright {
-            margin-top: 20px;
+            margin-top: 30px;
             text-align: center;
             width: 100%;
+            color: #00bfff;
+            font-family: 'Orbitron', sans-serif;
         }
 
-        /* Responsive Styles */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d1117;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .scroll-to-top.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-to-top:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(13, 17, 23, 0.98);
+                box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
+                padding: 20px;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
             }
 
             .hamburger {
                 display: block;
             }
 
-            .project-header h1 {
+            .page-banner h1 {
                 font-size: 2rem;
             }
 
-            .project-header p {
+            .page-banner p {
                 font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
             }
 
             .timeline::after {
@@ -366,42 +520,12 @@
                 padding-right: 25px;
             }
 
-            .timeline-item.right {
-                left: 0;
-            }
-
             .timeline-item::after {
-                left: 21px;
+                left: 18px;
             }
 
-            .timeline-item.right::after {
-                left: 21px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-links {
-                margin-top: 20px;
-                justify-content: center;
-            }
-
-            .social-media {
-                margin-top: 20px;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .right {
+                left: 0;
             }
         }
     </style>
@@ -410,7 +534,7 @@
     <header>
         <nav class="container">
             <div class="logo">
-                <img src="/api/placeholder/150/50?text=YugTroniX" alt="YugTroniX Logo">
+                <img src="yug.jpg" alt="YugTroniX Logo">
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -425,232 +549,210 @@
         </nav>
     </header>
 
-    <main>
-        <section class="project-header">
-            <div class="project-header-content container">
-                <h1>Robotic Arm for Pick and Place Operations</h1>
-                <p>A versatile 5-DOF robotic arm with precision control, designed to automate object manipulation tasks with real-time feedback and programmable operation</p>
+  <main>
+    <section class="page-banner">
+        <div class="container">
+            <h1>Robotic Arm for Pick and Place Operations</h1>
+            <p>A versatile 5-DOF robotic arm with precision control for automated object manipulation</p>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Project Overview</h2>
             </div>
-        </section>
+            <div class="project-content">
+                <img src="/api/placeholder/1000/500?text=Robotic+Arm" alt="Robotic Arm" class="project-image">
+                <p>The YugTroniX Robotic Arm project focuses on developing a precision-engineered robotic manipulator capable of performing complex pick and place operations. Our design combines mechanical engineering, electronics, and software components to create a versatile platform that can be programmed for a variety of manipulation tasks.</p>
+                <p>This project serves as both an educational tool for understanding robotic kinematics and a practical demonstration of how automation can be applied to real-world tasks. The arm features multiple degrees of freedom, precise servo control, and both manual and automated operation modes, making it suitable for diverse applications ranging from educational demonstrations to simple industrial tasks.</p>
+            </div>
+        </div>
+    </section>
 
-        <section class="project-content">
-            <div class="container">
-                <div class="project-section">
-                    <h2>Project Overview</h2>
-                    <img src="/api/placeholder/1000/500?text=Robotic+Arm" alt="Robotic Arm" class="project-image">
-                    <p>The YugTroniX Robotic Arm project focuses on developing a precision-engineered robotic manipulator capable of performing complex pick and place operations. Our design combines mechanical engineering, electronics, and software components to create a versatile platform that can be programmed for a variety of manipulation tasks.</p>
-                    <p>This project serves as both an educational tool for understanding robotic kinematics and a practical demonstration of how automation can be applied to real-world tasks. The arm features multiple degrees of freedom, precise servo control, and both manual and automated operation modes, making it suitable for diverse applications ranging from educational demonstrations to simple industrial tasks.</p>
+    <section class="project-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Key Features</h2>
+            </div>
+            <div class="features-list">
+                <ul>
+                    <li><strong>5 Degrees of Freedom:</strong> Base rotation, shoulder, elbow, wrist articulation, and gripper, allowing for complex movement patterns</li>
+                    <li><strong>Precision Control:</strong> High-torque servo motors with encoder feedback for accurate positioning</li>
+                    <li><strong>Modular Design:</strong> Easily replaceable components and upgradeable parts</li>
+                    <li><strong>Multiple Control Interfaces:</strong> Control via manual controller, computer software, or autonomous programmed sequences</li>
+                    <li><strong>Object Detection:</strong> Integrated camera and proximity sensors for automated object identification</li>
+                    <li><strong>Customizable Gripper:</strong> Interchangeable end effectors for different object types and tasks</li>
+                    <li><strong>Position Memory:</strong> Ability to record and replay movement sequences</li>
+                    <li><strong>Real-time Feedback:</strong> Continuous monitoring of position, force, and system status</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Specifications</h2>
+            </div>
+            <div class="col">
+                <h3>Hardware Components</h3>
+                <div class="tech-stack">
+                    <span class="tech-item">Arduino Mega</span>
+                    <span class="tech-item">Raspberry Pi 4</span>
+                    <span class="tech-item">MG996R Servo Motors</span>
+                    <span class="tech-item">PCA9685 PWM Controller</span>
+                    <span class="tech-item">Load Cells</span>
+                    <span class="tech-item">IR Proximity Sensors</span>
+                    <span class="tech-item">HD USB Camera</span>
+                    <span class="tech-item">Custom PCB Interface</span>
+                    <span class="tech-item">12V Power Supply</span>
                 </div>
+                
+                <h3>Software Stack</h3>
+                <div class="tech-stack">
+                    <span class="tech-item">Arduino IDE</span>
+                    <span class="tech-item">Python</span>
+                    <span class="tech-item">OpenCV</span>
+                    <span class="tech-item">ROS (Robot Operating System)</span>
+                    <span class="tech-item">MATLAB for Kinematics</span>
+                    <span class="tech-item">Custom GUI Interface</span>
+                    <span class="tech-item">PID Control Library</span>
+                </div>
+                
+                <h3>Performance Metrics</h3>
+                <div class="tech-stack">
+                    <span class="tech-item">Payload: 500g</span>
+                    <span class="tech-item">Reach: 45 cm</span>
+                    <span class="tech-item">Precision: ±1mm</span>
+                    <span class="tech-item">Base Rotation: 270°</span>
+                    <span class="tech-item">Operation: Continuous</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="project-section">
-                    <h2>Key Features</h2>
-                    <div class="features-list">
-                        <ul>
-                            <li><strong>5 Degrees of Freedom:</strong> Base rotation, shoulder, elbow, wrist articulation, and gripper, allowing for complex movement patterns</li>
-                            <li><strong>Precision Control:</strong> High-torque servo motors with encoder feedback for accurate positioning</li>
-                            <li><strong>Modular Design:</strong> Easily replaceable components and upgradeable parts</li>
-                            <li><strong>Multiple Control Interfaces:</strong> Control via manual controller, computer software, or autonomous programmed sequences</li>
-                            <li><strong>Object Detection:</strong> Integrated camera and proximity sensors for automated object identification</li>
-                            <li><strong>Customizable Gripper:</strong> Interchangeable end effectors for different object types and tasks</li>
-                            <li><strong>Position Memory:</strong> Ability to record and replay movement sequences</li>
-                            <li><strong>Real-time Feedback:</strong> Continuous monitoring of position, force, and system status</li>
-                        </ul>
+    <section class="project-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Development Timeline</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Design Phase</h3>
+                        <p>CAD modeling, component selection, and kinematic calculations</p>
                     </div>
                 </div>
-
-                <div class="project-section">
-                    <h2>Technical Specifications</h2>
-                    <div class="row">
-                        <div class="col">
-                            <h3>Hardware Components</h3>
-                            <div class="tech-stack">
-                                <span class="tech-item">Arduino Mega</span>
-                                <span class="tech-item">Raspberry Pi 4</span>
-                                <span class="tech-item">MG996R Servo Motors</span>
-                                <span class="tech-item">PCA9685 PWM Controller</span>
-                                <span class="tech-item">Load Cells</span>
-                                <span class="tech-item">IR Proximity Sensors</span>
-                                <span class="tech-item">HD USB Camera</span>
-                                <span class="tech-item">Custom PCB for Interface</span>
-                                <span class="tech-item">12V Power Supply</span>
-                            </div>
-                            
-                            <h3>Software Stack</h3>
-                            <div class="tech-stack">
-                                <span class="tech-item">Arduino IDE</span>
-                                <span class="tech-item">Python</span>
-                                <span class="tech-item">OpenCV</span>
-                                <span class="tech-item">ROS (Robot Operating System)</span>
-                                <span class="tech-item">MATLAB for Kinematics</span>
-                                <span class="tech-item">Custom GUI Interface</span>
-                                <span class="tech-item">PID Control Library</span>
-                            </div>
-                            
-                            <h3>Performance Metrics</h3>
-                            <div class="tech-stack">
-                                <span class="tech-item">Payload Capacity: 500g</span>
-                                <span class="tech-item">Reach: 45 cm</span>
-                                <span class="tech-item">Precision: ±1mm</span>
-                                <span class="tech-item">Base Rotation: 270°</span>
-                                <span class="tech-item">Operating Time: Continuous</span>
-                            </div>
-                        </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Mechanical Assembly</h3>
+                        <p>3D printing of structural components and assembly of the arm frame</p>
                     </div>
                 </div>
-
-                <div class="project-section">
-                    <h2>Development Timeline</h2>
-                    <div class="timeline">
-                        <div class="timeline-item left">
-                            <div class="timeline-content">
-                                <h3>Design Phase</h3>
-                                <p>CAD modeling, component selection, and kinematic calculations</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item right">
-                            <div class="timeline-content">
-                                <h3>Mechanical Assembly</h3>
-                                <p>3D printing of structural components and assembly of the arm frame</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item left">
-                            <div class="timeline-content">
-                                <h3>Electronics Integration</h3>
-                                <p>Servo wiring, control board assembly, and sensor integration</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item right">
-                            <div class="timeline-content">
-                                <h3>Basic Software Development</h3>
-                                <p>Motor control algorithms, manual control interface, and position calibration</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item left">
-                            <div class="timeline-content">
-                                <h3>Vision System Implementation</h3>
-                                <p>Camera setup, object detection algorithms, and spatial calibration</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item right">
-                            <div class="timeline-content">
-                                <h3>Advanced Control Development</h3>
-                                <p>Inverse kinematics, trajectory planning, and autonomous sequence programming</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item left">
-                            <div class="timeline-content">
-                                <h3>Testing & Refinement</h3>
-                                <p>Performance evaluation, error correction, and optimization of operation</p>
-                            </div>
-                        </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Electronics Integration</h3>
+                        <p>Servo wiring, control board assembly, and sensor integration</p>
                     </div>
                 </div>
-
-                <div class="project-section">
-                    <h2>Project Team</h2>
-                    <p>Our multidisciplinary team brought together expertise in mechanical engineering, electronics, programming, and computer vision to create this versatile robotic arm platform.</p>
-                    <div class="team-members">
-                        <div class="team-member">
-                            <img src="/api/placeholder/100/100?text=Team+1" alt="Team Member">
-                            <h3>Guru Charan</h3>
-                            <p>Project Lead</p>
-                        </div>
-                        <div class="team-member">
-                            <img src="/api/placeholder/100/100?text=Team+2" alt="Team Member">
-                            <h3>Uday kiran</h3>
-                            <p>Mechanical Design</p>
-                        </div>
-                        <div class="team-member">
-                            <img src="/api/placeholder/100/100?text=Team+3" alt="Team Member">
-                            <h3>Paresh</h3>
-                            <p></p>
-                        </div>
-                        <div class="team-member">
-                            <img src="/api/placeholder/100/100?text=Team+4" alt="Team Member">
-                            <h3>Neha</h3>
-                            <p></p>
-                        </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Basic Software Development</h3>
+                        <p>Motor control algorithms, manual control interface, and position calibration</p>
                     </div>
                 </div>
-
-                <div class="project-section">
-                    <h2>Gallery</h2>
-                    <div class="project-gallery">
-                        <div class="gallery-item">
-                            <img src="/api/placeholder/400/300?text=Arm+Design" alt="Arm Design">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/api/placeholder/400/300?text=Control+System" alt="Control System">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/api/placeholder/400/300?text=Gripper+Mechanism" alt="Gripper Mechanism">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/api/placeholder/400/300?text=Object+Detection" alt="Object Detection">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/api/placeholder/400/300?text=Testing+Precision" alt="Testing Precision">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="/api/placeholder/400/300?text=Complete+Assembly" alt="Complete Assembly">
-                        </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Vision System Implementation</h3>
+                        <p>Camera setup, object detection algorithms, and spatial calibration</p>
                     </div>
                 </div>
-
-                <div class="project-section">
-                    <h2>Applications</h2>
-                    <p>Our robotic arm platform has been designed with versatility in mind, enabling it to serve multiple purposes:</p>
-                    <div class="features-list">
-                        <ul>
-                            <li><strong>Educational Demonstrations:</strong> Visual learning tool for robotics, kinematics, and automation principles</li>
-                            <li><strong>Laboratory Automation:</strong> Precise handling of samples and materials in controlled environments</li>
-                            <li><strong>Small-Scale Assembly:</strong> Repeatable assembly of small components for prototyping and production</li>
-                            <li><strong>Research Platform:</strong> Testbed for developing new control algorithms and grip techniques</li>
-                            <li><strong>STEM Education:</strong> Hands-on robotic programming platform for students</li>
-                        </ul>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Advanced Control Development</h3>
+                        <p>Inverse kinematics, trajectory planning, and autonomous sequence programming</p>
                     </div>
                 </div>
-
-                <div class="project-section">
-                    <h2>Technical Challenges</h2>
-                    <p>Throughout development, our team overcame several significant challenges:</p>
-                    <div class="features-list">
-                        <ul>
-                            <li><strong>Weight Distribution:</strong> Balancing arm segments to maintain stability while maximizing reach</li>
-                            <li><strong>Joint Backlash:</strong> Minimizing play in the gear systems to achieve high precision</li>
-                            <li><strong>Power Management:</strong> Ensuring sufficient power for multiple simultaneous servo operations</li>
-                            <li><strong>Inverse Kinematics:</strong> Developing accurate algorithms for translating target positions to joint angles</li>
-                            <li><strong>Object Recognition:</strong> Creating reliable vision systems that work under varying lighting conditions</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="project-section">
-                    <h2>Future Development</h2>
-                    <p>We're actively working on enhancing our robotic arm with planned improvements including:</p>
-                    <div class="features-list">
-                        <ul>
-                            <li>Integration of force feedback sensors for adaptive gripping pressure</li>
-                            <li>Implementation of machine learning for improved object recognition and handling</li>
-                            <li>Development of a collaborative mode for human-robot interaction</li>
-                            <li>Addition of wireless control capabilities via mobile application</li>
-                            <li>Creation of a programmable sequence editor with drag-and-drop interface</li>
-                            <li>Integration with conveyor systems for continuous operation scenarios</li>
-                        </ul>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Testing & Refinement</h3>
+                        <p>Performance evaluation, error correction, and optimization of operation</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="cta-section">
-            <div class="container">
-                <h2>Interested in our Robotic Arm project?</h2>
-                <p>Join YugTroniX Club to collaborate on cutting-edge robotics technology and automation solutions!</p>
-                <a href="index.html#contact" class="cta-button">Contact Us</a>
+    <section class="project-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Applications</h2>
             </div>
-        </section>
-    </main>
+            <div class="project-content">
+                <p>Our robotic arm platform has been designed with versatility in mind, enabling it to serve multiple purposes:</p>
+                <div class="features-list">
+                    <ul>
+                        <li><strong>Educational Demonstrations:</strong> Visual learning tool for robotics, kinematics, and automation principles</li>
+                        <li><strong>Laboratory Automation:</strong> Precise handling of samples and materials in controlled environments</li>
+                        <li><strong>Small-Scale Assembly:</strong> Repeatable assembly of small components for prototyping and production</li>
+                        <li><strong>Research Platform:</strong> Testbed for developing new control algorithms and grip techniques</li>
+                        <li><strong>STEM Education:</strong> Hands-on robotic programming platform for students</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="project-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Challenges</h2>
+            </div>
+            <div class="project-content">
+                <p>Throughout development, our team overcame several significant challenges:</p>
+                <div class="features-list">
+                    <ul>
+                        <li><strong>Weight Distribution:</strong> Balancing arm segments to maintain stability while maximizing reach</li>
+                        <li><strong>Joint Backlash:</strong> Minimizing play in the gear systems to achieve high precision</li>
+                        <li><strong>Power Management:</strong> Ensuring sufficient power for multiple simultaneous servo operations</li>
+                        <li><strong>Inverse Kinematics:</strong> Developing accurate algorithms for translating target positions to joint angles</li>
+                        <li><strong>Object Recognition:</strong> Creating reliable vision systems that work under varying lighting conditions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Future Development</h2>
+            </div>
+            <div class="project-content">
+                <p>We're actively working on enhancing our robotic arm with planned improvements including:</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Integration of force feedback sensors for adaptive gripping pressure</li>
+                        <li>Implementation of machine learning for improved object recognition and handling</li>
+                        <li>Development of a collaborative mode for human-robot interaction</li>
+                        <li>Addition of wireless control capabilities via mobile application</li>
+                        <li>Creation of a programmable sequence editor with drag-and-drop interface</li>
+                        <li>Integration with conveyor systems for continuous operation scenarios</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Interested in Contributing to Our Robotic Arm Project?</h2>
+            <p>Join YugTroniX Club to be part of our innovative automation development team!</p>
+            <a href="index.html#contact" class="cta-button">Contact Us</a>
+        </div>
+    </section>
+</main>
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -659,7 +761,7 @@
                     <a href="index.html#projects">Projects</a>
                     <a href="index.html#about">About Us</a>
                     <a href="index.html#team">Team</a>
-                    <a href="index.html#gallery">Gallery</a>
+                    <a href="index.html#contact">Contact</a>
                 </div>
                 <div class="social-media">
                     <a href="#"><i class="fab fa-facebook"></i></a>
@@ -669,36 +771,84 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 YugTroniX Club. All rights reserved.</p>
+                <p>&copy; 2025 YugTroniX - JNTUK UCEK. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <script>
-        // Mobile Navigation
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const scrollTopBtn = document.querySelector('.scroll-to-top');
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    // Close mobile menu if open
+            document.addEventListener('click', function(event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
                     if (navLinks.classList.contains('active')) {
                         navLinks.classList.remove('active');
                     }
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
                 }
             });
+
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (rect.top <= (window.innerHeight || document.documentElement.clientHeight) / 1.25 && rect.bottom >= 0);
+            }
+
+            function animateOnScroll() {
+                const animatedElements = document.querySelectorAll('.timeline-item, .tech-item, .features-list li');
+                animatedElements.forEach(element => {
+                    if (isInViewport(element) && !element.classList.contains('animated')) {
+                        element.classList.add('animated');
+                        element.style.animation = 'fadeIn 0.8s ease-out forwards';
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
         });
     </script>
 </body>
