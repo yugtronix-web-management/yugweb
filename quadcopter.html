@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - YugTroniX Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            background: #0d1117;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(13, 17, 23, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            list-style: none;
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #00bfff;
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: #00ffff;
+            font-size: 1.5rem;
+        }
+
+        .page-banner {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 80px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a1f2e 100%);
+        }
+
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, transparent 98%, rgba(0, 255, 255, 0.1) 98%),
+                linear-gradient(0deg, transparent 98%, rgba(0, 255, 255, 0.1) 98%);
+            background-size: 100px 100px;
+            animation: circuitFlow 20s linear infinite;
+        }
+
+        @keyframes circuitFlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        .page-banner h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00ffff 0%, #00bfff 50%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-banner p {
+            color: #00bfff;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .project-section:nth-child(even) {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 100%);
+        }
+
+        .project-section:nth-child(odd) {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+            margin: 15px auto;
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-image:hover {
+            transform: scale(1.02);
+            border-color: rgba(138, 43, 226, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+        }
+
+        .project-content p {
+            color: #00bfff;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .features-list ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features-list li {
+            color: #00bfff;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #00ffff;
+            font-size: 1.5rem;
+        }
+
+        .features-list strong {
+            color: #00ffff;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-item {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: #00ffff;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: rgba(138, 43, 226, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .col h3 {
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin: 30px 0 20px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(180deg, #00ffff, #8a2be2);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #00ffff;
+            border: 4px solid #0d1117;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -16px;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 30px;
+            background: rgba(13, 17, 23, 0.6);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(138, 43, 226, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .timeline-content h3 {
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #00bfff;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 100%);
+        }
+
+        .cta-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: #00bfff;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0d1117;
+            background: linear-gradient(135deg, #00ffff 0%, #00bfff 100%);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+        }
+
+        footer {
+            background: #0d1117;
+            color: #fff;
+            padding: 50px 0;
+            border-top: 2px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: #00bfff;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .social-media a {
+            color: #00ffff;
+            margin-left: 20px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #8a2be2;
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            text-align: center;
+            width: 100%;
+            color: #00bfff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d1117;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .scroll-to-top.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-to-top:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(13, 17, 23, 0.98);
+                box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
+                padding: 20px;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .page-banner h1 {
+                font-size: 2rem;
+            }
+
+            .page-banner p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 18px;
+            }
+
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="yug.jpg" alt="YugTroniX Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-banner">
+            <div class="container">
+                <h1>Quadcopter Drone with LIDAR-based Mapping</h1>
+                <p>An advanced quadcopter drone that combines precision control with cutting-edge LIDAR technology</p>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Project Overview</h2>
+                </div>
+                <div class="project-content">
+                    <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/INA1.jpg" alt="Quadcopter Drone" class="project-image">
+                    <p>The YugTroniX Quadcopter Drone with LIDAR-based Mapping represents our flagship aviation robotics project. This advanced drone system moves beyond conventional quadcopter designs by integrating sophisticated control systems and cutting-edge LIDAR mapping technology.</p>
+                    <p>What sets our drone apart is its ability to operate with precision in GPS-denied environments such as indoor spaces, tunnels, and areas with poor satellite reception. The custom-built flight controller and innovative vibration reduction system ensure stable flight even in challenging conditions, while the LIDAR system creates detailed 3D maps of the surrounding environment in real-time.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Key Features</h2>
+                </div>
+                <div class="features-list">
+                    <ul>
+                        <li><strong>Dual Control Systems:</strong> Intuitive joystick control with supplementary hand gesture recognition for additional command options</li>
+                        <li><strong>Advanced Vibration Reduction:</strong> Custom-designed vibration dampening system that enhances stability and improves sensor readings</li>
+                        <li><strong>Custom Flight Controller:</strong> In-house developed flight control system optimized for precise indoor navigation</li>
+                        <li><strong>LIDAR Integration:</strong> 360° LIDAR scanning capability that creates detailed point-cloud maps with centimeter-level accuracy</li>
+                        <li><strong>Real-time Mapping:</strong> Onboard processing that generates and updates environmental maps during flight</li>
+                        <li><strong>Indoor Navigation:</strong> GPS-independent positioning system that relies on visual odometry and LIDAR data</li>
+                        <li><strong>Extended Flight Time:</strong> Optimized power management system that provides up to 25 minutes of continuous operation</li>
+                        <li><strong>Modular Design:</strong> Easy component replacement and upgrade capability</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Technical Specifications</h2>
+                </div>
+                <div class="col">
+                    <h3>Hardware Components</h3>
+                    <div class="tech-stack">
+                        <span class="tech-item">Raspberry Pi 4</span>
+                        <span class="tech-item">STM32F4 Microcontroller</span>
+                        <span class="tech-item">Brushless DC Motors</span>
+                        <span class="tech-item">TF-Mini LIDAR Sensor</span>
+                        <span class="tech-item">MPU-9250 IMU</span>
+                        <span class="tech-item">Custom PCB</span>
+                        <span class="tech-item">Carbon Fiber Frame</span>
+                        <span class="tech-item">4S LiPo Battery</span>
+                    </div>
+                    
+                    <h3>Software Stack</h3>
+                    <div class="tech-stack">
+                        <span class="tech-item">ROS (Robot Operating System)</span>
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">C++</span>
+                        <span class="tech-item">OpenCV</span>
+                        <span class="tech-item">Point Cloud Library</span>
+                        <span class="tech-item">Betaflight</span>
+                        <span class="tech-item">TensorFlow Lite</span>
+                    </div>
+                    
+                    <h3>Performance Metrics</h3>
+                    <div class="tech-stack">
+                        <span class="tech-item">Flight Time: 25 minutes</span>
+                        <span class="tech-item">Max Speed: 15 m/s</span>
+                        <span class="tech-item">LIDAR Range: 12 meters</span>
+                        <span class="tech-item">Mapping Accuracy: ±3 cm</span>
+                        <span class="tech-item">Max Payload: 500g</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Development Timeline</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Planning Phase</h3>
+                            <p>Initial concept design, team formation, and requirements gathering</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Frame Design</h3>
+                            <p>CAD modeling, 3D printing of prototypes, and vibration testing</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Electronics Integration</h3>
+                            <p>PCB design, microcontroller programming, and peripheral integration</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>LIDAR Implementation</h3>
+                            <p>Sensor mounting, data processing algorithms, and point cloud generation</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Flight Testing</h3>
+                            <p>Indoor flight calibration, stability tuning, and navigation testing</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Final Optimization</h3>
+                            <p>Software refinement, power optimization, and performance benchmarking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Applications</h2>
+                </div>
+                <div class="project-content">
+                    <p>Our quadcopter drone with LIDAR-based mapping has practical applications in multiple fields:</p>
+                    <div class="features-list">
+                        <ul>
+                            <li><strong>Indoor Inspection:</strong> Automated inspection of industrial facilities, warehouses, and construction sites</li>
+                            <li><strong>Search and Rescue:</strong> Mapping disaster areas where GPS signals may be compromised</li>
+                            <li><strong>Archaeological Surveys:</strong> Detailed mapping of indoor archaeological sites and caves</li>
+                            <li><strong>Education:</strong> Teaching platform for students interested in drone technology, robotics, and mapping systems</li>
+                            <li><strong>Research:</strong> Platform for developing and testing new autonomous navigation algorithms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Future Development</h2>
+                </div>
+                <div class="project-content">
+                    <p>We're actively working on the next generation of our quadcopter, with planned enhancements including:</p>
+                    <div class="features-list">
+                        <ul>
+                            <li>Integration of airbags for safe landing and crash protection</li>
+                            <li>Development of a robotic gripper for object manipulation and delivery tasks</li>
+                            <li>Implementation of vision-based navigation system for enhanced autonomous flight</li>
+                            <li>Integration of RGB-D cameras for enhanced visual mapping</li>
+                            <li>Implementation of AI-based object recognition for intelligent navigation</li>
+                            <li>Swarm capabilities for collaborative mapping with multiple drones</li>
+                            <li>Development of a more intuitive user interface for map visualization</li>
+                            <li>Extended battery life through more efficient power management systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Interested in Contributing to Our Quadcopter Project?</h2>
+                <p>Join YugTroniX Club to be part of our innovative drone development team!</p>
+                <a href="index.html#contact" class="cta-button">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#about">About Us</a>
+                    <a href="index.html#team">Team</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 YugTroniX - JNTUK UCEK. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const scrollTopBtn = document.querySelector('.scroll-to-top');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
+                }
+            });
+
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (rect.top <= (window.innerHeight || document.documentElement.clientHeight) / 1.25 && rect.bottom >= 0);
+            }
+
+            function animateOnScroll() {
+                const animatedElements = document.querySelectorAll('.timeline-item, .tech-item, .features-list li');
+                animatedElements.forEach(element => {
+                    if (isInViewport(element) && !element.classList.contains('animated')) {
+                        element.classList.add('animated');
+                        element.style.animation = 'fadeIn 0.8s ease-out forwards';
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
