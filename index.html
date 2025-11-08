@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YugTroniX Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            background: #0d1117;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(13, 17, 23, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            list-style: none;
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #00bfff;
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: #00ffff;
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a1f2e 100%);
+        }
+
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .circuit-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            opacity: 0.15;
+            background-image: 
+                linear-gradient(90deg, transparent 98%, rgba(0, 255, 255, 0.3) 98%),
+                linear-gradient(0deg, transparent 98%, rgba(0, 255, 255, 0.3) 98%);
+            background-size: 100px 100px;
+            animation: circuitFlow 20s linear infinite;
+        }
+
+        @keyframes circuitFlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        .holographic-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            z-index: 3;
+        }
+
+        .ring {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 50%;
+            animation: rotateRing 20s linear infinite;
+        }
+
+        .ring:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            border-color: rgba(0, 255, 255, 0.2);
+            animation-duration: 25s;
+        }
+
+        .ring:nth-child(2) {
+            width: 75%;
+            height: 75%;
+            top: 12.5%;
+            left: 12.5%;
+            border-color: rgba(138, 43, 226, 0.2);
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+
+        .ring:nth-child(3) {
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+            border-color: rgba(0, 191, 255, 0.2);
+            animation-duration: 15s;
+        }
+
+        @keyframes rotateRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .energy-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+        }
+
+        .orb {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 1) 0%, transparent 70%);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            animation: floatOrb 15s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .orb:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
+        .orb:nth-child(3) { top: 80%; left: 30%; animation-delay: 4s; }
+        .orb:nth-child(4) { top: 30%; left: 70%; animation-delay: 6s; }
+        .orb:nth-child(5) { top: 50%; left: 50%; animation-delay: 8s; }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+            25% { transform: translate(50px, -50px) scale(1.5); opacity: 1; }
+            50% { transform: translate(-30px, 30px) scale(1); opacity: 0.7; }
+            75% { transform: translate(40px, 40px) scale(1.2); opacity: 0.8; }
+        }
+
+        .wireframe-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .gear {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            top: 15%;
+            right: 10%;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rotateGear 10s linear infinite;
+        }
+
+        .gear::before, .gear::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 255, 255, 0.2);
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .gear::after {
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        @keyframes rotateGear {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .scan-beam {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 255, 255, 0.1) 45%,
+                rgba(0, 255, 255, 0.3) 50%,
+                rgba(0, 255, 255, 0.1) 55%,
+                transparent 100%);
+            z-index: 6;
+            animation: scanBeam 8s ease-in-out infinite;
+        }
+
+        @keyframes scanBeam {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            color: #fff;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .hero-logo {
+            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInDown 1s ease-out 0.5s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00ffff 0%, #00bfff 50%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #00bfff;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards;
+        }
+
+        .hero-subtitle span {
+            color: #8a2be2;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0d1117;
+            background: linear-gradient(135deg, #00ffff 0%, #00bfff 100%);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.8), 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .marquee {
+            background: linear-gradient(135deg, #00ffff 0%, #00bfff 50%, #8a2be2 100%);
+            color: #0d1117;
+            padding: 15px 0;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .logo-section {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+        }
+
+        .logo-section img {
+            max-width: 200px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5));
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 255, 255, 0.1);
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .projects {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 100%);
+        }
+
+        .projects h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-slideshow {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-slide {
+            display: none;
+            text-align: center;
+            background: rgba(13, 17, 23, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .project-slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .project-slide img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .project-slide h3 {
+            margin-top: 20px;
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            font-size: 2rem;
+        }
+
+        .project-slide p {
+            margin: 20px 0 30px;
+            color: #00bfff;
+            line-height: 1.8;
+        }
+
+        .project-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #00ffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .project-nav:hover {
+            color: #8a2be2;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .prev {
+            left: -60px;
+        }
+
+        .next {
+            right: -60px;
+        }
+
+        .about-us {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+        }
+
+        .about-us h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-us p {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+            color: #00bfff;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .team-members {
+            padding: 80px 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 100%);
+        }
+
+        .team-members h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .team-carousel-container {
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .team-carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member {
+            flex: 0 0 280px;
+            margin-right: 30px;
+            text-align: center;
+            background: rgba(13, 17, 23, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            border-color: rgba(138, 43, 226, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .team-member img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .team-member h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            color: #8a2be2;
+            font-weight: 600;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .carousel-nav button {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: #00ffff;
+            cursor: pointer;
+            margin: 0 20px;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .carousel-nav button:hover {
+            color: #8a2be2;
+            transform: scale(1.2);
+        }
+
+        .contact-us {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+        }
+
+        .contact-us h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto 50px;
+        }
+
+        .contact-item {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(13, 17, 23, 0.6);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            min-width: 250px;
+        }
+
+        .contact-item i {
+            font-size: 2.5rem;
+            color: #00ffff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        .contact-item p {
+            color: #00bfff;
+        }
+
+        .map-container {
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .event-gallery {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 100%);
+        }
+
+        .event-gallery h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00ffff 0%, #8a2be2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gallery-slideshow {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .gallery-slide {
+            display: none;
+        }
+
+        .gallery-slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+        }
+
+        footer {
+            background: #0d1117;
+            color: #fff;
+            padding: 50px 0;
+            border-top: 2px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links a {
+            color: #00bfff;
+            text-decoration: none;
+            margin-right: 25px;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .social-media a {
+            color: #00ffff;
+            margin-left: 20px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #8a2be2;
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            text-align: center;
+            width: 100%;
+            color: #00bfff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .social-media-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+
+        .social-media-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d1117;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .social-media-toggle:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+
+        .social-media-icons {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            display: none;
+        }
+
+        .social-media-icons.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-media-icons a {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d1117;
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .social-media-icons a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d1117;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .scroll-to-top.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-to-top:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(13, 17, 23, 0.98);
+                box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
+                padding: 20px;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-logo {
+                font-size: 0.9rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .projects h2, .about-us h2, .team-members h2, .contact-us h2, .event-gallery h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="/api/placeholder/150/50?text=YugTroniX" alt="YugTroniX Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <canvas id="particleCanvas"></canvas>
+            <div class="circuit-layer"></div>
+            <div class="holographic-rings">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+            </div>
+            <div class="energy-orbs">
+                <div class="orb"></div>
+                <div class="orb"></div>
+                <div class="orb"></div>
+                <div class="orb"></div>
+                <div class="orb"></div>
+            </div>
+            <div class="wireframe-container">
+                <div class="gear"></div>
+            </div>
+            <div class="scan-beam"></div>
+            <div class="hero-content">
+                <div class="hero-logo">JNTUK UCEK</div>
+                <h1>Welcome to YugTroniX</h1>
+                <div class="hero-subtitle">Innovate <span>•</span> Build <span>•</span> Lead</div>
+                <a href="#projects" class="cta-button">Join the Revolution</a>
+            </div>
+        </section>
+
+        <div class="marquee">
+            <div class="marquee-content">
+                Innovating the Future with Robotics | Join YugTroniX and build your dreams! | Collaborate, Innovate, and Achieve! | Let's shape the world of tomorrow with technology!
+            </div>
+        </div>
+
+        <section class="logo-section">
+            <img src="/api/placeholder/200/200?text=YugTroniX" alt="YugTroniX Logo">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Our Projects</h2>
+                <div class="project-slideshow">
+                    <div class="project-slide active">
+                        <img src="/api/placeholder/800/400?text=Project+1" alt="Project 1">
+                        <h3>Quadcopter Drone with LIDAR-based Mapping</h3>
+                        <p>An advanced quadcopter drone, controlled by joystick and hand gestures with vibration reduction for improved stability, a custom flight controller, and LIDAR integration for enhanced mapping. The drone operates indoors without GPS reliance.</p>
+                        <a href="quadcopter.html" class="cta-button">Read More</a>
+                    </div>
+                    <div class="project-slide">
+                        <img src="/api/placeholder/800/400?text=Project+2" alt="Project 2">
+                        <h3>FPV RC Car with Autonomous Driving</h3>
+                        <p>A self-driving first-person view (FPV) RC car that navigates autonomously while providing real-time video feedback. This platform integrates computer vision, machine learning, and robotics to explore autonomous vehicle concepts.</p>
+                        <a href="fpvcar.html" class="cta-button">Read More</a>
+                    </div>
+                    <div class="project-slide">
+                        <img src="/api/placeholder/800/400?text=Project+3" alt="Project 3">
+                        <h3>Robotic Arm</h3>
+                        <p>A functional robotic arm capable of performing tasks such as picking and placing objects with precision and control.</p>
+                        <a href="arm.html" class="cta-button">Read More</a>
+                    </div>
+                    <div class="project-nav prev">&#10094;</div>
+                    <div class="project-nav next">&#10095;</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-us">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>YugTroniX is a cutting-edge technology club dedicated to innovating with purpose. Our vision is to lead the future of robotics and technology in education, fostering a community of passionate tech enthusiasts.</p>
+                <a href="about.html" class="cta-button">Read More</a>
+            </div>
+        </section>
+
+        <section id="team" class="team-members">
+            <div class="container">
+                <h2>Our Team</h2>
+                <div class="team-carousel-container">
+                    <div class="team-carousel">
+                        <div class="team-member">
+                            <img src="https://www.torquejntuk.in/images/surya.png" alt="Team Member 1">
+                            <h3>S.V.N.S Surya, IV</h3>
+                            <p>President</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="https://www.torquejntuk.in/images/VEMULAPALLILEELAKRISHNA[1].png" alt="Team Member 2">
+                            <h3>V.LEELA Krishna, II</h3>
+                            <p>Vice President</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="https://mechanical-department-jntuk.github.io/subpages/images/gayatri.jpeg" alt="Team Member 3">
+                            <h3>K. Gayatri, IV</h3>
+                            <p>Secretary</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="IMG-20250403-WA0047.jpg" alt="Team Member 4">
+                            <h3>D. Jahnavi, IV</h3>
+                            <p>Student Coordinator</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="WhatsApp Image 2025-11-08 at 14.03.47_0aa5b429.jpg" alt="Team Member 5">
+                            <h3>Guru Charan, II</h3>
+                            <p>Student Coordinator</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+6" alt="Team Member 6">
+                            <h3>Latha Sri, I</h3>
+                            <p>Student Coordinator</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="/api/placeholder/200/200?text=Member+7" alt="Team Member 7">
+                            <h3>Uday Kiran, I</h3>
+                            <p>Student Coordinator</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-us">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>YugTroniX Club, Department of Mechanical Engineering<br>UCEK, JNTU Kakinada, 533003</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>yugtronix.me@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+91 9959591436</p>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.4397274483117!2d82.24059866386136!3d16.97956724316883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a382841a29aaaab%3A0xd7b17072d88d1f32!2sDepartment%20Of%20Mechanical%20Engineering!5e0!3m2!1sen!2sin!4v1725708576892!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="event-gallery">
+            <div class="container">
+                <h2>Event Gallery</h2>
+                <div class="gallery-slideshow">
+                    <div class="gallery-slide active">
+                        <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/Yugmem.jpg" alt="Event 1">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/INA2.jpg" alt="Event 2">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="https://raw.githubusercontent.com/YugTroniX-Robotics/Yugfiles/main/INA1.jpg" alt="Event 3">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#about">About Us</a>
+                    <a href="#team">Team</a>
+                    <a href="#gallery">Gallery</a>
+                </div>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 YugTroniX Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="social-media-button">
+        <div class="social-media-toggle">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="social-media-icons">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 80;
+        const connectionDistance = 150;
+        
+        let mouseX = canvas.width / 2;
+        let mouseY = canvas.height / 2;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    this.x -= dx * 0.01;
+                    this.y -= dy * 0.01;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 255, 255, 0.8)';
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = 'rgba(0, 255, 255, 0.8)';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        const opacity = 1 - distance / connectionDistance;
+                        ctx.strokeStyle = `rgba(0, 255, 255, ${opacity * 0.3})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            connectParticles();
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+
+            document.querySelector('.holographic-rings').style.transform = 
+                `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const projectSlides = document.querySelectorAll('.project-slide');
+        const prevProject = document.querySelector('.projects .project-nav.prev');
+        const nextProject = document.querySelector('.projects .project-nav.next');
+        let currentProjectSlide = 0;
+
+        function showProjectSlide(n) {
+            projectSlides[currentProjectSlide].classList.remove('active');
+            currentProjectSlide = (n + projectSlides.length) % projectSlides.length;
+            projectSlides[currentProjectSlide].classList.add('active');
+        }
+
+        prevProject.addEventListener('click', () => showProjectSlide(currentProjectSlide - 1));
+        nextProject.addEventListener('click', () => showProjectSlide(currentProjectSlide + 1));
+
+        const teamCarousel = document.querySelector('.team-carousel');
+        const teamMembers = document.querySelectorAll('.team-member');
+        const prevTeam = document.querySelector('.team-members .carousel-nav .prev');
+        const nextTeam = document.querySelector('.team-members .carousel-nav .next');
+        let currentTeamIndex = 0;
+        const visibleTeamMembers = window.innerWidth < 768 ? 1 : 3;
+
+        function showTeamSlide(n) {
+            const maxIndex = teamMembers.length - visibleTeamMembers;
+            currentTeamIndex = Math.max(0, Math.min(n, maxIndex));
+            const offset = -currentTeamIndex * (teamMembers[0].offsetWidth + 30);
+            teamCarousel.style.transform = `translateX(${offset}px)`;
+        }
+
+        prevTeam.addEventListener('click', () => showTeamSlide(currentTeamIndex - 1));
+        nextTeam.addEventListener('click', () => showTeamSlide(currentTeamIndex + 1));
+
+        const gallerySlides = document.querySelectorAll('.gallery-slide');
+        let currentGallerySlide = 0;
+
+        function showGallerySlide(n) {
+            gallerySlides[currentGallerySlide].classList.remove('active');
+            currentGallerySlide = (n + gallerySlides.length) % gallerySlides.length;
+            gallerySlides[currentGallerySlide].classList.add('active');
+        }
+
+        setInterval(() => showGallerySlide(currentGallerySlide + 1), 3000);
+
+        const socialMediaToggle = document.querySelector('.social-media-toggle');
+        const socialMediaIcons = document.querySelector('.social-media-icons');
+
+        socialMediaToggle.addEventListener('click', () => {
+            socialMediaIcons.classList.toggle('active');
+        });
+
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopButton.classList.add('active');
+            } else {
+                scrollToTopButton.classList.remove('active');
+            }
+        });
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        const progressBar = document.querySelector('.progress');
+
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            const newVisibleMembers = window.innerWidth < 768 ? 1 : 3;
+            if (newVisibleMembers !== visibleTeamMembers) {
+                showTeamSlide(currentTeamIndex);
+            }
+        });
+    </script>
+</body>
+</html>
